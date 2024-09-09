@@ -67,7 +67,7 @@ val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
             OutlinedTextField(
                 value = heightInput,
                 onValueChange = { heightInput = it.replace(',', '.') },
-                label = { Text("Height (cm)") },
+                label = { Text(stringResource(R.string.height)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 shape = RoundedCornerShape(50),
@@ -78,7 +78,7 @@ val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
             OutlinedTextField(
                 value = weightInput,
                 onValueChange = { weightInput = it.replace(',', '.') },
-                label = { Text("Weight (kg)") },
+                label = { Text(stringResource(R.string.weight)) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 shape = RoundedCornerShape(50),
@@ -87,12 +87,12 @@ val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
                     .padding(start = 1.dp),
             )
             Text(
-                text = "%.2f".format(bmi),
+                 text = stringResource(R.string.result, String.format("%.2f",bmi)),
                  modifier = Modifier
                     .width(200.dp)
-                    .padding(start = 8.dp,top = 21.dp)
+                    .padding(start = 8.dp,top = 21.dp, bottom = 20.dp)
                      .weight(3f)
-                    ,
+
             )
         }
     }

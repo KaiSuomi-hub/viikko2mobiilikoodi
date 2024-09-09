@@ -52,7 +52,14 @@ fun BmiCalculator() {
     var weightInput: String by remember { mutableStateOf("") }
     val height = heightInput.toFloatOrNull() ?: 0.0f
     val weight = weightInput.toFloatOrNull() ?: 0.0f
-val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
+
+    val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
+
+    val Blue = Color(0xFF0000FF)
+    val Green = Color(0xFF00FF00)
+    val Red = Color(0xFFFF0000)
+
+    var warnColor = if (bmi < 18.5) Blue else if (bmi < 25) Green else Red
     Column {
         Text(
             text = stringResource(R.string.bmi_calculator),
@@ -87,12 +94,12 @@ val bmi = if (height > 0 && weight > 0) weight / (height / 100).pow(2) else 0.0f
                     .padding(start = 1.dp),
             )
             Text(
-                 text = stringResource(R.string.result, String.format("%.2f",bmi)),
-                 modifier = Modifier
+                text = stringResource(R.string.result, String.format("%.2f", bmi)),
+                color = warnColor,
+                modifier = Modifier
                     .width(200.dp)
-                    .padding(start = 8.dp,top = 21.dp, bottom = 20.dp)
-                     .weight(3f)
-
+                    .padding(start = 8.dp, top = 21.dp, bottom = 20.dp)
+                    .weight(3f)
             )
         }
     }
